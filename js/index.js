@@ -18,6 +18,9 @@ $(document).ready(function(){
 	});
 	
 	function calcCoinText(number){
+		
+		var data = $('.coin .data').val() - 0;
+		
 		return 'двенадцать';
 	}
 	
@@ -71,12 +74,12 @@ $(document).ready(function(){
 		
 	}
 	
-	function EncryptNumberMassive(data){
+	/*function EncryptNumberMassive(data){
 		
 		var numberNames = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
 		var encryptData = numberNames[data].length;
 		return encryptData;
-	}
+	}*/
 });
 
 
