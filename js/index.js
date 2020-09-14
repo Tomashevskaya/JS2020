@@ -1,5 +1,82 @@
 $(document).ready(function(){
 	console.log(1);
+	
+	
+	
+	$('.login-popup').hide();
+	$('.login-popup .close').click(function(){
+		
+		$('.login-popup').hide();
+	});
+	
+	$('.coin .process').click(function(){
+		var data = $('.coin .data').val() - 0;
+		
+		var coinText = calcCoinText(data);
+		
+		$('.coin .result').text(coinText);
+	});
+	
+	function calcCoinText(number){
+		return 'двенадцать';
+	}
+	
+	$('.encrypt .process').click(function(){
+		var data = $('.encrypt .data').val() - 0;
+		
+		var encryptData = encryptNumber(data);
+		
+		$('.encrypt .result').text(encryptData);
+	});
+	
+	function EncryptNumber(data){
+		
+		var EncryptData;
+		switch(data){
+			
+			case 0:
+			  EncryptData = 4;
+			break;
+			case 1:
+			  EncryptData = 4;
+			break;
+			case 2:
+			  EncryptData = 3;
+			break;
+			case 3:
+			  EncryptData = 3;
+			break;
+			case 4:
+			  EncryptData = 6;
+			break;
+			case 5:
+			  EncryptData = 4;
+			break;
+			case 6:
+			  EncryptData = 5;
+			break;
+			case 7:
+			  EncryptData = 4;
+			break;
+			case 8:
+			  EncryptData = 6;
+			break;
+			case 9:
+			  EncryptData = 6;
+			break;
+			
+		}
+		
+		return EncryptData;
+		
+	}
+	
+	function EncryptNumberMassive(data){
+		
+		var numberNames = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять'];
+		var encryptData = numberNames[data].length;
+		return encryptData;
+	}
 });
 
 
