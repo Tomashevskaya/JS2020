@@ -1,6 +1,14 @@
 $(document).ready(function(){
 	console.log(1);
 	
+	var bra = [
+	
+		['(', ')']
+		['[', ']']
+		['<', '>']
+	];
+
+	
 	var numbers0To10 = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять'];
 	var numbers11To19 = ['одиннадцать', 'двеннадцать', 'тринадцать', 
 	                     'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать'];
@@ -19,8 +27,97 @@ $(document).ready(function(){
 		
 		$('.coin .result').text(coinText);
 	});
+		
+	$('.strings .process').click(function(){
+		
+		var text = $('.strings .data').val();
+		var newText = ReverseText(text);
+		$('.strings .result').text(newText);
+	});
+	
+	$('.calcStrings .process').click(function(){
+		
+		var text = $('.calcStrings .data').val();
+		var newCount = CalcWords(text);
+		$('.calcStrings .result').text(newCount);
+	});
+	
+	$('.Kovychki .process').click(function(){
+		
+		var text = $('.Kovychki .data').val();
+		var errors = SearchErrors(text);
+		$('.Kovychki .result').text(errors);
+	});
+	
+	
+	function SearchErrors(text){
+		
+		var mass = [];
+		
+		for(var i = 0; i < text.length; i++){
+			
+			
+		}
+		
+		/*var resOne = 0;
+		var resTwo = 0;
+
+		for(var i = 0; i < text.length; i++){
+			if (resTwo > resOne){
+				return "Все плохо";
+			}
+			if (text[i] == ")"){
+				resTwo++;
+			}
+			if (text[i] == "("){
+				resOne++;
+			}
+		}*/
+		
+		
+		
+		
+		if(resOne == resTwo) {res = "Все верно";}
+		else if(resOne > resTwo) {res = "Закройте скобки";}
+		else if(resOne < resTwo) {res = "Лишние скобки";}
+		
+		return res;
+		
+	}
+	
+	function CalcWords(text){
+		var count = countSymbol(text, " ");
+		return count + 1;
+		
+	}
+	
+	function countSymbol(text, symbol){
+		var count = 0;
+		for(var i = 0; i < text.length;i++){
+			
+			if(text[i] == symbol){
+				count++;
+			};
+		}
+		return count
+	}
+	
+	function ReverseText(text){
+		
+		var array1 = [];
+		for(var i = text.length-1; i >= 0 ; i--){
+			
+			array1.push(text[i]);
+		}
+		var array = array1.join('');
+		return array;
+	}
 	
 	function calcCoinText(number){
+		
+
+		if(number > 99)
+			number = number %100;
 		
 		if(number < 11)
 			return numbers0To10[number];
