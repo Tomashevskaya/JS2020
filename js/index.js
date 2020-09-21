@@ -3,9 +3,9 @@ $(document).ready(function(){
 	
 	var bra = [
 	
-		['(', ')']
-		['[', ']']
-		['<', '>']
+		['(', ')'],
+		['[', ']'],
+		['<', '>'],
 	];
 
 	
@@ -49,17 +49,39 @@ $(document).ready(function(){
 		$('.Kovychki .result').text(errors);
 	});
 	
-	
-	function SearchErrors(text){
+	$('.bra .process').click(function(){
 		
+		var data = $('.bra .data').val();
+		var isGood = checkBra(data);
+		$('.bra .result').text(isGood);
+	});
+	
+	function checkBra(text){
+		
+		var count = [];
 		var mass = [];
 		
-		for(var i = 0; i < text.length; i++){
+		for(var iText = 0; iText < text.length; iText++){
 			
-			
+			var symbol = text[iText];
+			for(var iBra = 0; iBra < bra.length; iBra++){
+				
+				var onePairOfBra = bra[iBra]; // Example ['<', '>']
+				if (onePairOfBra[0] == symbol){
+					
+					count += symbol;
+					mass += bra[iBra][1];
+				}
+			}
 		}
 		
-		/*var resOne = 0;
+		if() {return "All good";}
+		//return mass;
+	}
+	
+	function SearchErrors(text){
+
+		var resOne = 0;
 		var resTwo = 0;
 
 		for(var i = 0; i < text.length; i++){
@@ -72,7 +94,7 @@ $(document).ready(function(){
 			if (text[i] == "("){
 				resOne++;
 			}
-		}*/
+		}
 		
 		
 		
