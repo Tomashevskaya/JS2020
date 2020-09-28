@@ -7,7 +7,9 @@ $(document).ready(function(){
 		['[', ']'],
 		['<', '>'],
 	];
-
+	
+	
+	
 	
 	var numbers0To10 = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять'];
 	var numbers11To19 = ['одиннадцать', 'двеннадцать', 'тринадцать', 
@@ -52,14 +54,120 @@ $(document).ready(function(){
 	$('.bra .process').click(function(){
 		
 		var data = $('.bra .data').val();
-		var isGood = checkBra(data);
-		$('.bra .result').text(isGood);
+		var res = checkBra(data);
+		$('.bra .result').text(res);
 	});
 	
+	$('.numbers .process').click(function(){
+		
+		var data = $('.numbers .data').val();
+		var isGood = checkNumbers(data);
+		$('.numbers .result').text(isGood);
+		var res = checkQuantity(data);
+		$('.numbers .res').text(res);
+	});
+	
+	$('.textArea .process').click(function(){
+		
+		var data = $('.textArea .data').val();
+		var res = replaceEnter(data);
+		
+		$('.textArea .result')[0].innerHTML = res;
+		
+	});
+	$('.checkPol .process').click(function(){
+		
+		var data = $('.checkPol .data').val();
+		var res = checkPolindrom(data);
+		
+		$('.checkPol .result').text(res);
+		
+	});
+
+
+	function checkPolindrom(text){
+
+		var answer = false;
+		
+		for(var i = 0; i < text.length / 2; i++){
+
+			for(var y = text.length; y > text.length / 2; y--){
+		
+				if(text[y] == text[i]){
+
+					answer = true;
+				}
+			}
+
+		}
+		return answer;
+	}
+
+
+
+	//Меняем энтеры для HTML
+	function replaceEnter(data){
+		
+		var text = data;
+		var newText = text.replace(/(?:\r\n|\r|\n)/g, '<br>');
+		return newText;
+	}
+	
+	//Находим кол-во чисел во вводимом тексте
+	function checkNumbers(text){
+		
+		var count = 0;
+		for(var iNumb = 0; iNumb < text.length; iNumb++){
+			
+			var numb1 = text[iNumb];
+			if(!isNaN(numb1) && numb1!=' '){
+					
+				count++;
+			}
+		}
+		return count;
+	}
+	//Находим кол-во чисел в тексте
+	function checkQuantity(text){
+		
+		var answer = 0;
+		//Идем ли мы уже по начатому числу
+		var numberWasStarted = false;
+		//Встречали ли точки
+		var flagDot = false;
+		
+		for(var iNumb = 0; iNumb < text.length; iNumb++){
+			
+			var symbol = text[iNumb];
+			if(!isNaN(symbol)){
+				if(!numberWasStarted){
+					
+					//Начали число
+					answer++;
+					numberWasStarted = true;
+				}
+			}else{
+				if(symbol == '.' && !flagDot){
+					//Встретили первую точку
+					flagDot = true;
+
+				} else {
+					//Закончили число
+					numberWasStarted = false;
+					flagDot = false;
+				}
+				
+			}
+		}
+		return answer;
+	}
+	
+
+
+	//Проверяем, правильно ли расставлены скобки
 	function checkBra(text){
 		
-		var count = [];
-		var mass = [];
+		var count = 0;
 		
 		for(var iText = 0; iText < text.length; iText++){
 			
@@ -69,14 +177,11 @@ $(document).ready(function(){
 				var onePairOfBra = bra[iBra]; // Example ['<', '>']
 				if (onePairOfBra[0] == symbol){
 					
-					count += symbol;
-					mass += bra[iBra][1];
+					count++;
 				}
 			}
 		}
-		
-		if() {return "All good";}
-		//return mass;
+		return count;
 	}
 	
 	function SearchErrors(text){
