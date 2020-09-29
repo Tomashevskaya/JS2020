@@ -7,9 +7,7 @@ $(document).ready(function(){
 		['[', ']'],
 		['<', '>'],
 	];
-	
-	
-	
+
 	
 	var numbers0To10 = ['ноль', 'один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять'];
 	var numbers11To19 = ['одиннадцать', 'двеннадцать', 'тринадцать', 
@@ -75,6 +73,7 @@ $(document).ready(function(){
 		$('.textArea .result')[0].innerHTML = res;
 		
 	});
+	
 	$('.checkPol .process').click(function(){
 		
 		var data = $('.checkPol .data').val();
@@ -92,6 +91,7 @@ $(document).ready(function(){
 		$('.uppAndLow .result').text(res);
 		
 	});
+	
 	$('.fibonacchiNumbs .process').click(function(){
 		
 		var data = $('.fibonacchiNumbs .data').val();
@@ -100,32 +100,43 @@ $(document).ready(function(){
 		$('.fibonacchiNumbs .result').text(res);
 		
 	});
+	
 	$('.minNumbs .process').click(function(){
 		
-		var data = $('.minNumbs .data').val();
+		var data = $('.minNumbs .data').val().split(' ');
 		var res = minNumbers(data);
 		
 		$('.minNumbs .result').text(res);
 		
 	});
 
+	//Найти 3 мин значения из числа введенных
 	function minNumbers(numbs){
 		
 		
-		var numbers = [];
+		var min = [undefined, undefined, undefined];
 		
-		for(var i = 1; i < numbs.length; i++){
+		min[0] = number[0];
+		min[1] = number[1];
+		min[2] = number[2];
+		min.sort();
+	
+		for(var i = 0; i < numbs.length; i++){
 				
-			numbers[0] = numbs[0];
-			var a = numbers[i-1];
-			var b = numbers[i];
-			numbers.sort(function(a, b){
-				return a - b;
-			});
+			var number = numbs[i] - 0;
+			
+			if(!min[0] || number < min[0]){
+				min[2] = min[1];
+				min[1] = min[0];
+				min[0] = number;
+			}else if(!min[1] || number < min[1]){
+				min[2] = min[1];
+				min[1] = number;
+			}else if(!min[2] || number < min[2]){
+				min[2] = number;
+			}
 		}
-		return numbers;
-		
-		
+		return number;
 	}
 	//Вывести заданное кол-во чисел фибоначи
 	function fibonacchiNumbers(numb){
