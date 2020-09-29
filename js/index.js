@@ -83,24 +83,49 @@ $(document).ready(function(){
 		$('.checkPol .result').text(res);
 		
 	});
+	
+	$('.uppAndLow .process').click(function(){
+		
+		var data = $('.uppAndLow .data').val();
+		var res = uppAndLowLetters(data);
+		
+		$('.uppAndLow .result').text(res);
+		
+	});
 
+	//Меняем прописные буквы на заглавные
+	function uppAndLowLetters(text){
+		
+		var newText = [];
+		newText[0] = text[0].toUpperCase();
+		newText[1] = text[1];
+		for(var i = 2; i < text.length; i++){
 
+			if(text[i-2] == '.' || text[i-2] == '!' || text[i-2] == '?'){
+
+				newText[i] = text[i].toUpperCase();
+			}else{
+				
+				newText[i] = text[i];
+			}
+		}
+		return newText.join('');
+	}
+	
 	function checkPolindrom(text){
 
-		var answer = false;
+		
 		
 		for(var i = 0; i < text.length / 2; i++){
 
-			for(var y = text.length; y > text.length / 2; y--){
-		
-				if(text[y] == text[i]){
-
-					answer = true;
-				}
+			var symb = text[text.length - 1 - i];
+			
+			if(symb != text[i]){
+				
+				return false;
 			}
-
 		}
-		return answer;
+		return true;
 	}
 
 
