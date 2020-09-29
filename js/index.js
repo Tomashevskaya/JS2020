@@ -92,7 +92,54 @@ $(document).ready(function(){
 		$('.uppAndLow .result').text(res);
 		
 	});
+	$('.fibonacchiNumbs .process').click(function(){
+		
+		var data = $('.fibonacchiNumbs .data').val();
+		var res = fibonacchiNumbers(data);
+		
+		$('.fibonacchiNumbs .result').text(res);
+		
+	});
+	$('.minNumbs .process').click(function(){
+		
+		var data = $('.minNumbs .data').val();
+		var res = minNumbers(data);
+		
+		$('.minNumbs .result').text(res);
+		
+	});
 
+	function minNumbers(numbs){
+		
+		
+		var numbers = [];
+		
+		for(var i = 1; i < numbs.length; i++){
+				
+			numbers[0] = numbs[0];
+			var a = numbers[i-1];
+			var b = numbers[i];
+			numbers.sort(function(a, b){
+				return a - b;
+			});
+		}
+		return numbers;
+		
+		
+	}
+	//Вывести заданное кол-во чисел фибоначи
+	function fibonacchiNumbers(numb){
+		
+		var numbs = [];
+		numbs[0] = 1;
+		numbs[1] = 1;
+		
+		for( var i = 2; i < numb ; i++){
+			
+			numbs[i] = numbs[i-2] + numbs[i-1];			
+		}
+		return numbs;
+	}
 	//Меняем прописные буквы на заглавные
 	function uppAndLowLetters(text){
 		
