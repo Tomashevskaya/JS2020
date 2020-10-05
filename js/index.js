@@ -154,14 +154,6 @@ $(document).ready(function(){
 		var word1 = w1;
 		var word2 = w2;
 		
-		/*for(var i = 0; i < w1.length; i++){
-			
-			word1.push[i];
-		}
-		for(var i = 0; i < w2.length; i++){
-			
-			word2.push[i];
-		}*/
 		word1.sort();
 		word2.sort();
 		
