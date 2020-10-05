@@ -104,11 +104,137 @@ $(document).ready(function(){
 	$('.minNumbs .process').click(function(){
 		
 		var data = $('.minNumbs .data').val().split(' ');
-		var res = minNumbers(data);
+		var result = minNumbers(data);
 		
-		$('.minNumbs .result').text(res);
+		$('.minNumbs .result').text(result);
 		
 	});
+	
+	$('.deleteDuble .process').click(function(){
+		
+		var symbols = $('.deleteDuble .data').val().split(' ');
+		
+		var uniqSymbols = [];
+		
+		for(var i = 0; i < symbols.length; i++){
+			
+			var symbol = symbols[i];
+			if(uniqSymbols.indexOf(symbol) < 0){
+				
+				uniqSymbols.push(symbol);
+			}
+		}
+		
+		$('.deleteDuble .result').text(uniqSymbols);
+		
+	});
+	
+	$('.sum10 .process').click(function(){
+		
+		var data = $('.sum10 .data').val();
+		var result = sumOfNumbers10(data);
+		
+		$('.sum10 .result').text(result);
+		
+	});
+	$('.pairOfWords .process').click(function(){
+		
+		var word1 = $('.pairOfWords .data1').val().split('');
+		var word2 = $('.pairOfWords .data2').val().split('');
+		var result = anagramWords(word1, word2);
+		
+		$('.pairOfWords .result').text(result);
+		
+	});
+	
+	
+	function anagramWords(w1,w2){
+		var result;
+		
+		var word1 = w1;
+		var word2 = w2;
+		
+		/*for(var i = 0; i < w1.length; i++){
+			
+			word1.push[i];
+		}
+		for(var i = 0; i < w2.length; i++){
+			
+			word2.push[i];
+		}*/
+		word1.sort();
+		word2.sort();
+		
+		for(var i = 0; i < word1.length; i++){
+			
+			for(var y = 0; y < word2.length; y++){
+				
+				if(word1.length != word2.length){
+					
+					result = "Слова не являются анаграммами";
+				}else if(word2[y] == word1[i]){
+					
+					result = "Слова являются анаграммами";
+				}else{
+					
+					result = "Слова не являются анаграммами";
+				}
+			}
+		}
+		return result;
+	}
+	
+	//Найти пары чисел, сумма которых равно 10
+	function sumOfNumbers10(numbs){
+		
+		var pairs = [];
+		
+		for(var i = 0; i < numbs.length; i++){
+			
+			var anotherOneNumb = 10 - numbs[i];
+			if(numbs.indexOf(anotherOneNumb) > -1 && numbs.indexOf(anotherOneNumb) != i){
+				
+				pairs.push(numbs[i], anotherOneNumb);
+			}
+		}
+		return pairs;
+	}
+	/*function deleteDuble(text){
+		
+		var result = [];
+		var array = [];
+		for(var i = 0; i < text.length; i++){
+			
+			array.push(text[i]);
+			result.push(text[i]);
+		}
+			
+		
+		for(var i = 0; i < text.length; i++){
+			
+			newArray = array.splice(i, 1);
+			
+			for(var y = 0; y < newArray.length; y++){
+				
+				if(newArray[y] == text[i]){
+					
+					result.splice(newArray[y]);
+				}
+			}
+		}
+		text.sort(function(a, b){
+			
+			return a - b;
+		});
+		for(var i = 1; i < text.length; i++){
+			
+			if(text[i] == text[i-1]){
+				
+				text.splice(i-1, 2);
+			}
+		}
+		return result;
+	}*/
 
 	//Найти 3 мин значения из числа введенных
 	function minNumbers(numbs){
