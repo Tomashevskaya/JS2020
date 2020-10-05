@@ -167,21 +167,15 @@ $(document).ready(function(){
 		
 		for(var i = 0; i < word1.length; i++){
 			
-			for(var y = 0; y < word2.length; y++){
+			if(word1.length != word1.length){
+					
+				return false;
+			}else if(word1[i] != word2[i]){
 				
-				if(word1.length != word2.length){
-					
-					result = "Слова не являются анаграммами";
-				}else if(word2[y] == word1[i]){
-					
-					result = "Слова являются анаграммами";
-				}else{
-					
-					result = "Слова не являются анаграммами";
-				}
+				return false;
 			}
 		}
-		return result;
+		return true;
 	}
 	
 	//Найти пары чисел, сумма которых равно 10
